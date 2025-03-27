@@ -1,6 +1,6 @@
 <app-navbar 
-    (opoenCartEventEmitter)="openCloseCart()"
-    [cartItems]="cartItems"    
+    [cartItems]="cartItems"  
+    [total]="total"  
 />
 <div class="container">
     <div class="row">
@@ -9,12 +9,6 @@
             (addToCartEventEmitter)="addToCart($event)"
         />
     </div>
-    @if (showCart) {
-        <cart-modal 
-            (closeCartEventEmitter)="openCloseCart()"
-            [cartItems]="cartItems"
-            [total]="total"
-            (removeFromCartEventEmitter)="removeFromCart($event)"
-        />
-    }
+    <!-- aqui nos mostrara componentes segun la ruta que coloquemos en el navegador -->
+    <router-outlet></router-outlet>
 </div>

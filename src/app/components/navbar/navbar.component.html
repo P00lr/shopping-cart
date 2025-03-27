@@ -10,7 +10,14 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="openCart()">carrito ({{ cartItems.length }})</a>
+            <!-- [routerLink] para mapear a la ruta routerLink -->
+             <!-- [state] atributo para compartir estado "informacion" entre las rutas-->
+              <!-- aqui los cartItems se lo pasamos al shoppingCart con [state] -->
+            <a 
+            [routerLink]="['/shopping-cart']"
+            [state]="{cartItems: cartItems, total: total}"
+            class="nav-link"
+            role="button">carrito ({{ cartItems.length }})</a>
           </li>
         </ul>
       </div>

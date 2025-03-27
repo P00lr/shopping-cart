@@ -4,22 +4,21 @@ import { Product } from '../model/product.model';
 import { ListProductsComponent } from "./list-products/list-products.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { CartItems } from '../model/cart-items.model';
-import { CartModalComponent } from './cart-modal/cart-modal.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'cart-app',
   imports: [
     ListProductsComponent,
     NavbarComponent,
-    CartModalComponent,
+    RouterOutlet
   ],
     
   templateUrl: './cart-app.component.html',
-  styles: ``
 })
 export class CartAppComponent implements OnInit{
+  /* estos atributos lo vamos a compartir con los compoentes que esten enrutados */
   products: Product[] = [];
-  showCart: boolean = false;
   cartItems: CartItems[] = [];
   total!: number;
   constructor(private productoService: ProductService) {}
@@ -28,9 +27,7 @@ export class CartAppComponent implements OnInit{
   ngOnInit(): void {
     this.products = this.productoService.findAll();
     this.cartItems = JSON.parse(sessionStorage.getItem('cart') || '[]');
-  }
-  openCloseCart(): void {
-    this.showCart = !this.showCart;
+    this.calculateTotal();
   }
   addToCart(newProduct: Product): void {
     const exists = this.cartItems.find(article => article.product.id === newProduct.id);
