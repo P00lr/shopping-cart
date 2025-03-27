@@ -1,0 +1,10 @@
+<!-- no se uso este componente por que no se muestra como deberia en el modal -->
+<td>{{ article.product.name }}</td>
+<td class="text-end">{{ article.product.price }}</td>
+<td class="text-center">{{ article.quantity }}</td>
+<td class="text-end">{{ article.product.price * article.quantity }}</td>
+<td class="text-center">
+    <button class="btn btn-danger btn-sm" (click)="removeFromCart(article.product.id)">
+        eliminar
+    </button>
+</td>

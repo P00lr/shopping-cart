@@ -1,0 +1,38 @@
+<div class="abrir-modal animacion fadeIn">
+    <div class="modal" style="display: block;" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Carrito de compras</h5>
+                    <button (click)="closeCart()"
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @if (cartItems.length > 0) {
+                        <shopping-cart 
+                            [cartItems]="cartItems"
+                            [total]="total" 
+                            (removeFromCartEventEmitter)="removeFromCart($event)" 
+                        />
+                    }@else {
+                        <div class="alert alert-warning">
+                            El carrito esta vacio
+                        </div>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button (click)="closeCart()"
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                        Cerrar
+                    </button>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
