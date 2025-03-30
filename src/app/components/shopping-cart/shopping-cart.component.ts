@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartItems } from '../../model/cart-items.model';
-import { Router } from '@angular/router';
 import { SharingDataService } from '../../services/sharing-data.service';
+import { Store } from '@ngrx/store';
+import { ItemsState } from '../../store/items.reducer';
+import { total } from '../../store/items.actions';
 
 @Component({
   selector: 'shopping-cart',
@@ -9,21 +11,27 @@ import { SharingDataService } from '../../services/sharing-data.service';
   templateUrl: './shopping-cart.component.html',
 })
 //este componente es hermano de cart-app y navbar e igual se puede pasar informacion sin ser hijo o padre
-export class ShoppingCartComponent {
+export class ShoppingCartComponent implements OnInit {
   cartItems: CartItems[] = [];  
-  total!: number;
+  total: number = 0;
 
 
   //aqui le estamos pasando los cartItems mediante el estado de las rutas "pasando datos mediante ruta"
   // ya no depende de @input
   constructor(
     private sharingDataService:  SharingDataService,
-    private router: Router
+    private store: Store<{items: ItemsState}>
   ) {
-    //pasando los cartItems de navbar a shoppingCart 
-    this.cartItems = this.router.getCurrentNavigation()?.extras.state!['cartItems'];
+    //aqui obtenemos los datos desde el reducer
+    this.store.select('items').subscribe(state => {
+      this.cartItems = state.items;
+      this.total = state.total;
+    });
     //pasando el total de navbar a shoppingCart 
-    this.total = this.router.getCurrentNavigation()?.extras.state!['total'];
+  }
+  ngOnInit(): void {
+    //para que no se borre el total al actualizar
+    this.store.dispatch(total());
   }
 
   removeFromCart(id: number): void {
