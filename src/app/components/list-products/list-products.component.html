@@ -1,9 +1,10 @@
+<h3>Lista de productos</h3>
 <div class="row">
     @for (product of products; track $index) {
         <div class="col-md-4 mb-4">
             <product 
                 [product]="product"
-                (addToCartEventEmitter)="addToCart($event)"    
+                (addToCartEventEmitter)="addToCart($event)"
             />
         </div>
     }

@@ -7,17 +7,26 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <!-- aqui borramos el [state]="{products}" por que lo manejamos en su componente list-productss-->
+            <a 
+            [routerLink]="['/list-products']"
+            class="nav-link active"
+            aria-current="page" >Products</a>
           </li>
           <li class="nav-item">
-            <!-- [routerLink] para mapear a la ruta routerLink -->
-             <!-- [state] atributo para compartir estado "informacion" entre las rutas-->
-              <!-- aqui los cartItems se lo pasamos al shoppingCart con [state] -->
+            <!-- [routerLink] para mapear a la ruta-->
+            <!-- [state] atributo para compartir estado "informacion" entre las rutas-->
+            <!-- aqui los cartItems se lo pasamos al shoppingCart con [state] -->
+            <!-- se puede omitir el escribir 2 veces el nombre pero lo dejamos de muestra -->
+            <!-- cuando en state tiene el mismo nombre se puede colocar una sola vez, de las 2 maneras-->
             <a 
             [routerLink]="['/shopping-cart']"
-            [state]="{cartItems: cartItems, total: total}"
+            [state]="{
+              cartItems,
+              total: total
+            }"
             class="nav-link"
-            role="button">carrito ({{ cartItems.length }})</a>
+            role="button">cart ({{ cartItems.length }})</a>
           </li>
         </ul>
       </div>

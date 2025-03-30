@@ -5,7 +5,6 @@ import { Product } from '../../../model/product.model';
   selector: 'product',
   imports: [],
   templateUrl: './product.component.html',
-  styles: ``
 })
 export class ProductComponent {
   @Input() product!: Product;
