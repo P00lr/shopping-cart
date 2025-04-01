@@ -31,7 +31,7 @@ export class ShoppingCartComponent implements OnInit {
   }
   ngOnInit(): void {
     //para que no se borre el total al actualizar
-    this.store.dispatch(total());
+   // this.store.dispatch(total());
   }
 
   removeFromCart(id: number): void {

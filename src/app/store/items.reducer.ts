@@ -14,8 +14,9 @@ export const initialState: ItemsState = {
     total: 0,
 
 }
-//(item: CartItems) entre "()" por que se esta emitiendo y le decimos de que tipo es,
-// que es de cartItem la variable item
+
+//(item: CartItems) entre "()" por que se esta emitiendo y le decimos de que tipo es, 
+//que es de cartItem la variable item
 
 // y esto ahora devolveria un objeto de tipo ItemsState para que todo encaje que lleva el total y items
 //por eso todo el return se envuelve en {items: aqui va todo el contenido } y el total por que es de tipo ItemsState
@@ -32,10 +33,10 @@ export const itemsReducer = createReducer(
                             quantity: item.quantity + 1
                         }
                     }
-                    return item;
+                    return item; //se devulve tal y como estaban si no cumple con la condicion de arriba
                 }),
                 total: state.total
-            }//aqui cierra la llave para completar el tipo 
+            }
         } else {
             return {//aqui tambien envuelvo para devolver el tipo de dato ItemsState
                 items: [...state.items, { product: { ...product }, quantity: 1 }],

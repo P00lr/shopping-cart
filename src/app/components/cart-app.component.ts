@@ -18,8 +18,8 @@ import { add, remove, total } from '../store/items.actions';
   templateUrl: './cart-app.component.html',
 })
 export class CartAppComponent implements OnInit {
-  /* estos atributos lo vamos a compartir con los compoentes que esten enrutados */
-  cartItems: CartItems[] = [];
+    /* estos atributos lo vamos a compartir con los compoentes que esten enrutados */
+    cartItems: CartItems[] = [];
   
   //inyectamos los services
   constructor(
@@ -42,6 +42,7 @@ export class CartAppComponent implements OnInit {
     //para que se haga esta accion que va al reducer y luego viene al constructor al select('items') y hace lo demas
     this.removeFromCart();
     this.addToCart();
+    this.store.dispatch(total());
   }
   addToCart(): void {
     this.sharingDataService.productEventEmitter.subscribe(product => {
